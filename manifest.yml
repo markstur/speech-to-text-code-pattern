@@ -1,3 +1,13 @@
+declared-services:
+    wvb-watson-language-translator:
+        label: language_translator
+        plan: lite
+    wvb-speech-to-text:
+        label: speech_to_text
+        plan: lite
+    wvb-text-to-speech:
+        label: text_to_speech
+        plan: lite
 ---
 applications:
   - name: speech-to-text-code-pattern
@@ -6,6 +16,10 @@ applications:
     path: .
     command: npm run start
     instances: 1
-    memory: 512M
+    memory: 256M
     env:
       NPM_CONFIG_PRODUCTION: false
+    services:
+      - wvb-watson-language-translator
+      - wvb-speech-to-text
+      - wvb-text-to-speech

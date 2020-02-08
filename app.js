@@ -5,7 +5,8 @@ const vcapServices = require('vcap_services');
 const app = express();
 require('./config/express')(app);
 
-let url = process.env.SPEECH_TO_TEXT_URL;
+let serviceUrl = process.env.SPEECH_TO_TEXT_URL;
+let authUrl = process.env.SPEECH_TO_TEXT_AUTH_URL;
 
 // Supply the API key for IAM authentication.
 let apikey = process.env.SPEECH_TO_TEXT_APIKEY;
@@ -17,24 +18,26 @@ let bearerToken = process.env.SPEECH_TO_TEXT_BEARER_TOKEN;
 let username = process.env.SPEECH_TO_TEXT_USERNAME;
 let password = process.env.SPEECH_TO_TEXT_PASSWORD;
 
+let disableSslVerification = !!process.env.SPEECH_TO_TEXT_AUTH_DISABLE_SSL;
+
 // On Cloud Foundry, we'll have a VCAP_SERVICES environment variable with credentials.
 let vcapCredentials = vcapServices.getCredentials('speech_to_text');
 
 // Create appropriate token manager.
 let tokenManager;
-if (vcapCredentials || apikey) {
+if (vcapCredentials.apikey || apikey) {
   // Choose credentials from VCAP if they exist.
   apikey = (vcapCredentials && vcapCredentials.apikey) || apikey;
-  url = (vcapCredentials && vcapCredentials.url) || url;
+  serviceUrl = (vcapCredentials && vcapCredentials.url) || serviceUrl;
 
   try {
     tokenManager = new IamTokenManager({ apikey });
   } catch (err) {
     console.error('Error creating IAM token manager: ', err);
   }
-} else if (username && password && url) {
+} else if (username && password && authUrl) {
   try {
-    tokenManager = new Cp4dTokenManager({ username, password, url });
+    tokenManager = new Cp4dTokenManager({ username, password, url: authUrl, disableSslVerification });
   } catch (err) {
     console.error('Error creating CP4D token manager: ', err);
   }
@@ -49,13 +52,13 @@ const getToken = async () => {
       tokenResponse = {
         ...tokenResponse,
         accessToken: token,
-        url,
+        url: serviceUrl,
       };
-    } else if (bearerToken && url) {
+    } else if (bearerToken && serviceUrl) {
       tokenResponse = {
         ...tokenResponse,
         accessToken: bearerToken,
-        url,
+        url: serviceUrl,
       };
     } else {
       tokenResponse = {
@@ -69,6 +72,7 @@ const getToken = async () => {
       };
     }
   } catch (err) {
+    console.log("Error: ", err);
     tokenResponse = {
       ...tokenResponse,
       error: {
