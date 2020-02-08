@@ -1,11 +1,11 @@
 declared-services:
-    wvb-watson-language-translator:
+    sttcp-watson-language-translator:
         label: language_translator
         plan: lite
-    wvb-speech-to-text:
+    sttcp-speech-to-text:
         label: speech_to_text
         plan: lite
-    wvb-text-to-speech:
+    sttcp-text-to-speech:
         label: text_to_speech
         plan: lite
 ---
@@ -20,6 +20,6 @@ applications:
     env:
       NPM_CONFIG_PRODUCTION: false
     services:
-      - wvb-watson-language-translator
-      - wvb-speech-to-text
-      - wvb-text-to-speech
+      - sttcp-watson-language-translator
+      - sttcp-speech-to-text
+      - sttcp-text-to-speech
