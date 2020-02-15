@@ -2,7 +2,7 @@
 
 This document shows how to deploy the server using Cloud Foundry on IBM Cloud.
 
-[![Deploy to IBM Cloud](https://cloud.ibm.com/devops/setup/deploy/button_x2.png)](https://cloud.ibm.com/devops/setup/deploy?branch=cdpauth&repository=https://github.com/markstur/speech-to-text-code-pattern.git)
+[![Deploy to IBM Cloud](https://cloud.ibm.com/devops/setup/deploy/button_x2.png)](https://cloud.ibm.com/devops/setup/deploy?branch=cpdauth&repository=https://github.com/markstur/speech-to-text-code-pattern.git)
 
 1. Click the above `Deploy to IBM Cloud` button and then click on the `Delivery Pipeline` tool integration.
 
