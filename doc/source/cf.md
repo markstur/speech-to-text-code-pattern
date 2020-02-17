@@ -2,13 +2,13 @@
 
 This document shows how to deploy the server using Cloud Foundry on IBM Cloud.
 
-[![Deploy to IBM Cloud](https://cloud.ibm.com/devops/setup/deploy/button_x2.png)](https://cloud.ibm.com/devops/setup/deploy?branch=cpdauth&repository=https://github.com/markstur/speech-to-text-code-pattern.git)
+[![Deploy to IBM Cloud](https://cloud.ibm.com/devops/setup/deploy/button_x2.png)](https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/IBM/speech-to-text-code-pattern.git)
 
 1. Click the above `Deploy to IBM Cloud` button and then click on the `Delivery Pipeline` tool integration.
 
    ![deploy](images/cf_deploy.png)
 
-2. Create an API key by pressing the `Create+` button located next to the `IBM Cloud API key` field and then `Create` in the pop-up.
+2. Create an API key by pressing the `New +` button located next to the `IBM Cloud API key` field and then `OK` in the pop-up.
 
 3. Select your `Region`, `Organization` and `Space`.
 
@@ -22,12 +22,10 @@ This document shows how to deploy the server using Cloud Foundry on IBM Cloud.
 
    * sttcp-speech-to-text
 
-7. Click on the app and then click on `Visit App URL` to visit the bot's web page.
+7. Click on the app and then click on `Visit App URL` to visit the app's web page.
 
-## Run the web app
+## Use the web app
 
-* Go back to `Applications` ▷ `Routes`. You will see your app.
-* Click your app's `Hostname`. This will open the Watson Speech Translator web app in your browser.
 * Go back to the README.md for instructions on how to use the app.
 
 [![return](https://raw.githubusercontent.com/IBM/pattern-utils/master/deploy-buttons/return.png)](https://github.com/IBM/speech-to-text-code-pattern#use-the-web-app)
